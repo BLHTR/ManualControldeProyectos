@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual de Usuario · BlatoRH Project Analysis Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Exo:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Paleta de colores y tipografías */
+        :root {
+            --bl-azul-oscuro: #0D2240;
+            --bl-dorado: #B1A96E;
+            --bl-azul-principal: #1A77D2;
+            --bl-blanco: #FFFFFF;
+            --bl-gris-claro: #f3f4f6;
+            --bl-gris-oscuro: #1f2937;
+        }
+        
+        body {
+            font-family: 'Exo', sans-serif;
+            background-color: var(--bl-azul-oscuro);
+            color: var(--bl-blanco);
+            line-height: 1.6;
+            padding: 2rem 1rem;
+            margin: 0 auto;
+            max-width: 960px;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 2px;
+            color: var(--bl-dorado);
+            margin-top: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        h1 { font-size: 2.8rem; border-bottom: 2px solid rgba(255, 255, 255, 0.1); padding-bottom: 0.5rem; }
+        h2 { font-size: 2rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 0.25rem; }
+        h3 { font-size: 1.6rem; color: var(--bl-blanco); }
+        h4 { font-size: 1.3rem; color: var(--bl-blanco); }
+        
+        p, li, table { font-size: 1rem; color: var(--bl-gris-claro); }
+        a { color: var(--bl-azul-principal); text-decoration: none; border-bottom: 1px dashed var(--bl-azul-principal); }
+        a:hover { border-bottom: 1px solid var(--bl-azul-principal); }
+
+        strong { color: var(--bl-dorado); font-weight: 500; }
+        
+        ul { list-style-type: none; padding-left: 0; }
+        ul li { position: relative; padding-left: 1.5rem; margin-bottom: 0.5rem; }
+        ul li::before {
+            content: "•";
+            color: var(--bl-dorado);
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+        
+        pre {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            color: var(--bl-gris-claro);
+        }
+
+        .highlight-box {
+            background-color: rgba(177, 169, 110, 0.1);
+            border: 1px solid rgba(177, 169, 110, 0.3);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+        }
+
+        .section-separator {
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(177, 169, 110, 0.75), rgba(255, 255, 255, 0));
+            margin: 3rem 0;
+        }
+
+        /* Estilos de tabla */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        th, td {
+            text-align: left;
+            padding: 0.75rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        th {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--bl-dorado);
+            font-weight: 500;
+        }
+        
+        /* Layout */
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .header h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 4rem;
+            letter-spacing: 4px;
+            color: var(--bl-blanco);
+            margin: 0;
+            border: none;
+            padding: 0;
+        }
+        .header h1 strong { color: var(--bl-dorado); }
+        .header p {
+            font-family: 'Exo', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            color: var(--bl-gris-claro);
+            margin-top: 0.5rem;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Manual de Usuario</h1>
+        <p>BLATORH PROJECT ANALYSIS DASHBOARD</p>
+    </div>
+
+    <h2>1. Introducción</h2>
+    <p>BlatoRH Project Analysis Dashboard es una aplicación web que transforma archivos XML de Microsoft Project en un panel interactivo con indicadores clave, análisis visuales y asistencias impulsadas por IA. Está diseñado para responsables de proyectos que necesitan monitorear avances semanales, anticipar riesgos y preparar entregables ejecutivos de forma ágil.</p>
+    <p>Este manual describe cada paso del flujo de trabajo, las funcionalidades disponibles y recomendaciones para aprovechar al máximo la herramienta.</p>
+    
+    <hr class="section-separator">
+
+    <h2>2. Requisitos previos</h2>
+    <ul>
+        <li><strong>Navegador moderno</strong> (Chrome, Edge, Firefox o Safari) con conexión a internet para cargar librerías externas y permitir el uso de la IA de Gemini.</li>
+        <li><strong>Archivos XML de Microsoft Project:</strong>
+            <ul>
+                <li>Archivo <strong>actual</strong> (obligatorio) con el estado más reciente del cronograma.</li>
+                <li>Archivo <strong>anterior</strong> (opcional) para habilitar comparativas semanales.</li>
+            </ul>
+        </li>
+        <li><strong>Clave API de Google Gemini</strong> (opcional). Se utiliza para generar resúmenes ejecutivos, diagnósticos predictivos y explicaciones automatizadas.</li>
+    </ul>
+
+    <hr class="section-separator">
+    
+    <h2>3. Ingreso y reconocimiento de la interfaz</h2>
+    <p>Al abrir <code>index.html</code> verás:</p>
+    <ol>
+        <li><strong>Encabezado</strong> con el logotipo, el nombre de la app y el botón de configuración/branding.</li>
+        <li><strong>Guía rápida de carga</strong> (pasos 1, 2 y 3) que resume los archivos necesarios y ofrece la importación de instantáneas previas.</li>
+        <li><strong>Zona de carga inteligente</strong> donde se arrastran o seleccionan los archivos XML.</li>
+        <li><strong>Dashboard principal</strong> (visible después de procesar la información) con gráficos, tarjetas KPI, tableros IA y el diagrama de Gantt.</li>
+    </ol>
+
+    <hr class="section-separator">
+
+    <h2>4. Preparación e importación de datos</h2>
+    <h3>4.1 Cargar archivos XML</h3>
+    <ol>
+        <li><strong>Paso 1 – Archivo Actual:</strong> arrastra el XML más reciente sobre la zona “Archivo Actual” o presiona <strong>Seleccionar Archivo</strong>. El sistema confirmará el nombre y habilitará el siguiente paso.</li>
+        <li><strong>Paso 2 – Archivo Anterior (opcional):</strong> sube el XML de la semana anterior para comparar tendencias. Puedes omitirlo con <strong>Saltar paso 2</strong>.</li>
+        <li><strong>Paso 3 – Generar Dashboard:</strong> cuando el archivo actual esté cargado, el botón <strong>Generar dashboard</strong> se activa. Haz clic para procesar los datos y mostrar el panel.</li>
+    </ol>
+    <div class="highlight-box">
+        <p><strong>Nota:</strong> También puedes usar la zona central de carga inteligente: arrastra los archivos en el orden solicitado (actual y luego anterior) o selecciónalos desde los botones correspondientes.</p>
+    </div>
+    
+    <h3>4.2 Importar una instantánea guardada</h3>
+    <p>Si ya tienes una exportación previa en formato JSON:</p>
+    <ol>
+        <li>Haz clic en <strong>Importar Instantánea</strong>.</li>
+        <li>Selecciona el archivo <code>.json</code> generado anteriormente.</li>
+        <li>El dashboard se reconstruye con la misma información, sin necesidad de volver a subir XML.</li>
+    </ol>
+
+    <hr class="section-separator">
+
+    <h2>5. Encabezado y controles generales</h2>
+    <ul>
+        <li><strong>Fecha del reporte:</strong> se actualiza automáticamente según los datos cargados.</li>
+        <li><strong>Botón de Exportar Instantánea:</strong> guarda el estado actual del panel en JSON para compartirlo o recuperarlo más adelante.</li>
+        <li><strong>Botón de Configuración (⚙):</strong> abre el panel lateral de <strong>Personalización y IA</strong> para ajustes visuales y de automatización.</li>
+    </ul>
+    
+    <hr class="section-separator">
+
+    <h2>6. Interpretación del Dashboard</h2>
+    <p>Tras generar el tablero, encontrarás los siguientes componentes:</p>
+    
+    <h3>6.1 Identidad del proyecto</h3>
+    <ul>
+        <li><strong>Nombre del proyecto</strong> y <strong>Project Manager</strong> extraídos del XML.</li>
+    </ul>
+
+    <h3>6.2 Indicadores de tiempo y avance</h3>
+    <ul>
+        <li>Tarjetas con <strong>Fecha de inicio</strong>, <strong>Fin línea base</strong>, <strong>Fin proyectada</strong> y <strong>Días restantes</strong>.</li>
+        <li>Gráficos de <strong>avance (%)</strong> y <strong>rendimiento del tiempo</strong>, soportados por ApexCharts.</li>
+    </ul>
+
+    <h3>6.3 Estado general (RAG) y KPI SPI</h3>
+    <ul>
+        <li>Tarjeta <strong>Estado General (RAG)</strong> que resume la salud del proyecto en dimensiones de tiempo y tareas. Doble clic para recibir una explicación IA.</li>
+        <li>Tarjeta <strong>Índice de Rendimiento (SPI)</strong> con semáforo visual y acceso a exportación JPG. Doble clic para solicitar interpretación con IA.</li>
+    </ul>
+
+    <h3>6.4 Distribución de tareas</h3>
+    <p>Cuatro tarjetas muestran la cantidad de tareas <strong>Completadas</strong>, <strong>En progreso</strong>, <strong>Por iniciar</strong> y <strong>Atrasadas</strong>. Al hacer doble clic se abre un modal con la lista detallada.</p>
+    
+    <h3>6.5 Análisis de tendencias (requiere archivo anterior)</h3>
+    <p>Sección <strong>Análisis de Tendencias</strong> con listas de:</p>
+    <ul>
+        <li><strong>KPIs principales</strong> (variaciones semanales).</li>
+        <li><strong>Análisis de desvíos</strong> (tareas que causaron retrasos).</li>
+        <li><strong>Cambios en alcance</strong> (nuevas tareas o eliminaciones).</li>
+    </ul>
+
+    <h3>6.6 Paneles operativos</h3>
+    <ul>
+        <li><strong>Tareas de foco crítico</strong>, <strong>Próximas tareas clave</strong> (filtrables por tipo y rango de días), <strong>Hitos principales</strong>, <strong>Ruta crítica</strong> y <strong>Riesgos (tareas atrasadas)</strong>.</li>
+        <li>Cada listado ofrece exportación a JPG y tooltips que explican su propósito.</li>
+    </ul>
+
+    <h3>6.7 Diagrama de Gantt y vista de red</h3>
+    <ul>
+        <li>Selector entre <strong>Gantt</strong> y <strong>Diagrama de Red</strong>.</li>
+        <li>Filtros avanzados por fechas, escala (día/semana), recursos y focos (todas, críticas, hitos).</li>
+        <li>Controles para <strong>Expandir/Colapsar</strong>, <strong>Regenerar</strong>, exportar a <strong>JPG</strong> o descargar todas las tareas en <strong>CSV</strong>.</li>
+        <li>Leyenda desplegable para interpretar colores y texturas.</li>
+    </ul>
+
+    <h3>6.8 Gráficos adicionales</h3>
+    <ul>
+        <li><strong>Burndown/Burnup</strong> con controles de fecha.</li>
+        <li><strong>Carga de recursos</strong> para visualizar la distribución del esfuerzo.</li>
+    </ul>
+    
+    <hr class="section-separator">
+
+    <h2>7. Asistentes impulsados por IA</h2>
+    <p>Requieren configurar previamente la <strong>clave API de Gemini</strong> en el panel lateral.</p>
+    <ul>
+        <li><strong>Resumen Ejecutivo para Cliente:</strong> pulsa <strong>Generar Resumen IA</strong>. Obtendrás un párrafo HTML con el estado, riesgos y recomendaciones prioritarias. Puedes exportarlo como JPG.</li>
+        <li><strong>Diagnóstico Predictivo de Riesgos:</strong> pulsa <strong>Analizar Riesgos con IA</strong> para recibir de 3 a 5 riesgos futuros con contexto y acciones mitigadoras. Exportable a JPG.</li>
+        <li><strong>Explicaciones bajo demanda:</strong> haz doble clic en las tarjetas <strong>RAG</strong> o <strong>SPI</strong> para que la IA interprete los resultados en lenguaje natural.</li>
+    </ul>
+
+    <hr class="section-separator">
+    
+    <h2>8. Panel "Personalización y IA"</h2>
+    <p>Accede desde el botón ⚙ en el encabezado.</p>
+    <ul>
+        <li><strong>Logo corporativo:</strong> sube una imagen para reemplazar el logotipo por defecto. Se guarda en el navegador (localStorage).</li>
+        <li><strong>Temas de color:</strong> elige entre el tema por defecto, Oceánico o Contraste. Puedes ajustar el color de acento con el selector cromático.</li>
+        <li><strong>Clave API de Gemini:</strong> ingresa la clave y presiona <strong>Guardar</strong>. El estado se mostrará debajo del botón. Para deshabilitar la IA, deja el campo vacío y guarda.</li>
+    </ul>
+    <div class="highlight-box">
+        <p><strong>Nota:</strong> Las preferencias quedan memorizadas en tu navegador para futuras sesiones.</p>
+    </div>
+
+    <hr class="section-separator">
+    
+    <h2>9. Exportaciones y compartición</h2>
+    <ul>
+        <li><strong>Instantáneas JSON:</strong> capturan todos los datos derivados del proyecto y se importan desde el paso de carga.</li>
+        <li><strong>Capturas en JPG:</strong> la mayoría de los módulos (Tendencias, Resumen IA, Gantt, SPI, Riesgos, etc.) cuentan con botones de exportación individuales que generan una imagen lista para informes.</li>
+        <li><strong>CSV de tareas:</strong> disponible en la sección del Gantt para obtener la lista completa.</li>
+    </ul>
+
+    <hr class="section-separator">
+
+    <h2>10. Consejos de uso</h2>
+    <ul>
+        <li>Mantén los archivos XML actualizados y con calendarios consistentes para obtener métricas fiables.</li>
+        <li>Usa el archivo anterior siempre que quieras evaluar evoluciones semanales.</li>
+        <li>Explora los <strong>tooltips</strong> (icono “i” o textos resaltados) para comprender cada indicador.</li>
+        <li>Aprovecha la <strong>búsqueda y filtrado</strong> del Gantt para encontrar tareas críticas rápidamente.</li>
+        <li>Genera una instantánea después de cada actualización semanal para comparar cambios sin recalcular.</li>
+    </ul>
+
+    <hr class="section-separator">
+
+    <h2>11. Solución de problemas</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Situación</th>
+                <th>Posible causa</th>
+                <th>Acción recomendada</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>El botón "Generar dashboard" no se activa</td>
+                <td>Falta cargar el archivo actual</td>
+                <td>Verifica que el XML principal se haya seleccionado correctamente.</td>
+            </tr>
+            <tr>
+                <td>No se muestran datos en ciertas tarjetas</td>
+                <td>El XML carece de información relevante (recursos, ruta crítica, etc.)</td>
+                <td>Revisa que el plan de MS Project incluya los campos necesarios.</td>
+            </tr>
+            <tr>
+                <td>Botones IA deshabilitados o errores</td>
+                <td>No hay clave de Gemini, la cuota está agotada o la API responde con error</td>
+                <td>Ingresa una clave válida en el panel lateral o reintenta más tarde.</td>
+            </tr>
+            <tr>
+                <td>Exportaciones JPG fallan</td>
+                <td>Limitaciones del navegador o tamaño excesivo del componente</td>
+                <td>Reduce el zoom del navegador, espera unos segundos y reintenta.</td>
+            </tr>
+            <tr>
+                <td>Preferencias de branding no persisten</td>
+                <td>Se borró la caché/localStorage</td>
+                <td>Vuelve a aplicar el tema, logo y clave API desde el panel.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr class="section-separator">
+
+    <h2>12. Soporte y mantenimiento</h2>
+    <ul>
+        <li>Documenta las versiones de los archivos XML utilizados en cada análisis.</li>
+        <li>Antes de actualizar la aplicación, guarda una instantánea de referencia.</li>
+        <li>Para mejoras o incidencias técnicas, contacta al equipo responsable del dashboard.</li>
+    </ul>
+    
+</body>
+</html>
